@@ -1,0 +1,78 @@
+CREATE DATABASE cianmx;
+
+CREATE TABLE cianmx.gastos (
+	id_gasto INT(5) NOT NULL AUTO_INCREMENT,
+    fecha TIMESTAMP NOT NULL,
+    monto_pesos FLOAT NOT NULL,
+    PRIMARY KEY(id_gasto)
+);
+
+CREATE TABLE cianmx.clientes (
+	id_cliente INT(5) NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(45) NOT NULL,
+    apellido VARCHAR(45) NOT NULL,
+    correo VARCHAR(45) NOT NULL,
+    contraseña VARCHAR(45) NOT NULL,
+    telefono BIGINT(15) NOT NULL,
+    PRIMARY KEY(id_cliente)
+);
+
+CREATE TABLE cianmx.prendas (
+	id_prenda INT(5) NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(60) NOT NULL,
+    talla VARCHAR(10) NOT NULL,
+    precio FLOAT NOT NULL,
+    descripcion VARCHAR(150) NOT NULL,
+    imagen VARCHAR(45) NOT NULL,
+    PRIMARY KEY(id_prenda)
+);
+
+CREATE TABLE cianmx.pedidos (
+	id_pedido INT(5) NOT NULL AUTO_INCREMENT,
+    id_prenda INT(5) NOT NULL,
+    id_cliente INT(5) NOT NULL,
+    tipo_entrega VARCHAR(45) NOT NULL,
+    direccion VARCHAR(60),
+    punto_medio VARCHAR(45),
+    estado VARCHAR(45),
+    cp INT(5),
+    fecha VARCHAR(10) NOT NULL,
+    hora VARCHAR(10) NOT NULL,
+    PRIMARY KEY(id_pedido),
+    FOREIGN KEY (id_prenda) REFERENCES prendas(id_prenda),
+    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
+);
+
+INSERT INTO cianmx.prendas VALUES(0,'Sueter lila', 'M', 200, 'El color es sutilmente lila, la tela es tipo chenille super suave, calientita y cómoda, en las mangas tiene unos listones morados que resaltan increíble! ', 'images/img-pro-01.jpeg');
+INSERT INTO cianmx.prendas VALUES(0,'blusa tie dye', 'M', 140, 'Blusa con hombros descubiertos, las mangas son un poco caidas, American Eagle', 'images/img-pro-02.jpeg');
+INSERT INTO cianmx.prendas VALUES(0,'Sudadera Tacos', 'S', 130, 'Sudadera vino con frase super original, la tela por dentro es muy suave ', 'images/img-pro-03.jpeg');
+INSERT INTO cianmx.prendas VALUES(0,'Chamarra Denim', 'Oversized (M-L)', 230, 'Chamarra de mezclilla, viene un poco amplia, la tela es suave', 'images/instagram-img-01.jpeg');
+INSERT INTO cianmx.prendas VALUES(0,'Sueter cuello de tortuga', 'S', 200, 'Sueter con cuello alto y estilo como de cuadritos marcados ligeramente por todos lados, color hueso', 'images/instagram-img-02.jpeg');
+INSERT INTO cianmx.prendas VALUES(0,'Sueter con botones', 'M', 180, 'Sueter jaspeadito entre gris y negro, con botones y bolsitas de adorno', 'images/instagram-img-03.jpeg');
+INSERT INTO cianmx.prendas VALUES(0,'Vestido floreado', 'M', 160, 'Vestido ligero negro con bordados de flores en los hombros y en la cintura', 'images/instagram-img-04.jpeg');
+INSERT INTO cianmx.prendas VALUES(0,'Blusa/camisa transparente', 'M', 100, 'Blusa azul rey, es medio transparente, ideal para usar con bralette y es ligerita', 'images/instagram-img-05.jpeg');
+INSERT INTO cianmx.prendas VALUES(0,'Sueter jaspeadito', 'Oversized (M-L)', 160, 'Sueter jaspeado azul con puntitos rosas, con botones de adorno', 'images/instagram-img-06.jpeg');
+INSERT INTO cianmx.prendas VALUES(0,'Playera vino', 'S', 100, 'Playera super comoda y casual con frase de adorno', 'images/instagram-img-07.jpeg');
+INSERT INTO cianmx.prendas VALUES(0,'Blusa con escote V', 'XS', 120, 'Blusita de tirantes, el escote V viene adornado como con un estilo de agujeta', 'images/instagram-img-08.jpeg');
+INSERT INTO cianmx.prendas VALUES(0,'Blusa bordada ', 'S', 150, 'Hermosa blusa blanca bordada con flores negras, super bonita y elegante', 'images/instagram-img-09.jpeg');
+
+INSERT INTO cianmx.clientes VALUES(0,'Melissa', 'García', 'melissa@hotmail.com', 'abcd', 7225581490);
+INSERT INTO cianmx.clientes VALUES(0,'Mariana', 'Nemer', 'lskchlg@hotmail.com', 'aWASIAbC', 7221141990);
+INSERT INTO cianmx.clientes VALUES(0,'Daniela ', 'Viscaino', 'wdfavfb@hotmail.com', 'NBRWmSYP', 7221651966);
+INSERT INTO cianmx.clientes VALUES(0,'Abril', 'Torres', 'krbjyly@hotmail.com', 'TyNUNfFK', 7228191812);
+INSERT INTO cianmx.clientes VALUES(0,'Alejandra', 'Marquez', 'znnbbtx@hotmail.com', 'qb\nYzfB', 7225665137);
+INSERT INTO cianmx.clientes VALUES(0,'Laura', 'Rogel', 'ecbvaou@hotmail.com', 'Uw^vv\sf', 7226820605);
+INSERT INTO cianmx.clientes VALUES(0,'Ana', 'Lepe', 'concnmi@hotmail.com', 'rzaQLvS`', 7229687939);
+INSERT INTO cianmx.clientes VALUES(0,'Fernanda', 'Gascon', 'mlmbdfu@hotmail.com', 'KEc`LYkT', 7227099408);
+INSERT INTO cianmx.clientes VALUES(0,'Sandra', 'Santana', 'qzdkfuk@hotmail.com', 'TQJcjyNX', 7224735054);
+INSERT INTO cianmx.clientes VALUES(0,'Ary', 'Solis', 'qqygawp@hotmail.com', 'M`brGlVU', 7227012841);
+
+INSERT INTO cianmx.pedidos VALUES(0,1,10,'Envío', 'Av. Planicie #100B Hacienda San Pablo Tutitlan', 'Hogar', 'México', '47152', '20/03/2021','08:04');
+INSERT INTO cianmx.pedidos VALUES(0,2,8,'Personal', '', 'Gale metepec', '', '63701', '10/02/2021','23:42');
+INSERT INTO cianmx.pedidos VALUES(0,3,1,'Personal', '', 'Gale toluca', '', '72984', '12/01/2021','23:08');
+INSERT INTO cianmx.pedidos VALUES(0,4,10,'Personal', '', 'Patio toluca', '', '38645', '26/02/2021','07:43');
+INSERT INTO cianmx.pedidos VALUES(0,5,2,'Envío', 'Calle Colón 825 poniente Colonia centro ', 'Hogar', 'Sinaloa', '61295', '12/02/2021','11:58');
+INSERT INTO cianmx.pedidos VALUES(0,6,4,'Envío', 'Av. Ferrocarril s/n, Acopinalco del peñon Tlaxco', 'Hogar', 'Tlaxcala ', '19677', '02/01/2021','16:21');
+INSERT INTO cianmx.pedidos VALUES(0,7,1,'Personal', '', 'CU', '', '10811', '26/02/2021','12:49');
+INSERT INTO cianmx.pedidos VALUES(0,8,8,'Envío', 'Viveros de coyoacán #252B, Viveros de la Loma, Tlalnepantla de Baz', 'Hogar', 'México', '38257', '21/02/2021','11:08');
+INSERT INTO cianmx.pedidos VALUES(0,9,7,'Personal', '', 'Gale metepec', '', '70211', '21/02/2021','16:46');
