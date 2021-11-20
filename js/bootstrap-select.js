@@ -477,7 +477,7 @@
                 var searchbox = this.options.liveSearch ?
                     '<div class="bs-searchbox">' +
                     '<input type="text" class="form-control" autocomplete="off"' +
-                    (null === this.options.liveSearchPlaceholder ? '' : ' placeholder="' + htmlEscape(this.options.liveSearchPlaceholder) + '"') + ' role="textbox" aria-label="Search">' +
+                    (this.options.liveSearchPlaceholder === null ? '' : ' placeholder="' + htmlEscape(this.options.liveSearchPlaceholder) + '"') + ' role="textbox" aria-label="Search">' +
                     '</div>'
                     : '';
                 var actionsbox = this.multiple && this.options.actionsBox ?
@@ -554,16 +554,16 @@
                 var generateA = function(content, index, classes, optgroup) {
                     classes = 'dropdown-item ' + (classes || '');
                     return '<a tabindex="0"' +
-                        ((typeof classes !== 'undefined' && '' !== classes) ? ' class="' + classes + '"' : '') +
-                        ((typeof index !== 'undefined' && null !== index) ? ' data-original-index="' + index + '"' : '') +
-                        ((typeof optgroup !== 'undefined' && null !== optgroup) ? 'data-optgroup="' + optgroup + '"' : '') +
+                        ((typeof classes !== 'undefined' && classes !== '') ? ' class="' + classes + '"' : '') +
+                        ((typeof index !== 'undefined' && index !== null) ? ' data-original-index="' + index + '"' : '') +
+                        ((typeof optgroup !== 'undefined' && optgroup !== null) ? 'data-optgroup="' + optgroup + '"' : '') +
                         '>' + content + '</a>';
                 };
 
                 var generateDiv = function(content, classes, optgroup) {
                     return '<div' +
-                        ((typeof classes !== 'undefined' && '' !== classes) ? ' class="' + classes + '"' : '') +
-                        ((typeof optgroup !== 'undefined' && null !== optgroup) ? ' data-optgroup="' + optgroup + '"' : '') +
+                        ((typeof classes !== 'undefined' && classes !== '') ? ' class="' + classes + '"' : '') +
+                        ((typeof optgroup !== 'undefined' && optgroup !== null) ? ' data-optgroup="' + optgroup + '"' : '') +
                         '>' + content + '</div>';
                 };
 
